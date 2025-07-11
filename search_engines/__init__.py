@@ -2,7 +2,7 @@ from .engines import *
 
 
 __title__ = 'search_engines'
-__version__ = '0.6'
+__version__ = '0.5.1'
 __author__ = 'Tasos M. Adamopoulos'
 
 __all__ = [
