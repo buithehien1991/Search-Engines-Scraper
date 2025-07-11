@@ -160,6 +160,7 @@ class SearchEngine(object):
         self._query = utils.decode_bytes(query)
         self.results = SearchResults()
         request = self._first_page()
+        out.console('URL: {}'.format(request['url']))
 
         for page in range(1, pages + 1):
             try:
