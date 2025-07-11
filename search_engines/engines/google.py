@@ -6,9 +6,10 @@ from bs4 import BeautifulSoup
 
 class Google(SearchEngine):
     '''Searches google.com'''
-    def __init__(self, proxy=PROXY, timeout=TIMEOUT):
+    def __init__(self, proxy=PROXY, timeout=TIMEOUT, config=''):
         super(Google, self).__init__(proxy, timeout)
         self._base_url = 'https://www.google.com'
+        self._config = config
         self._delay = (2, 6)
         
         self.set_headers({'User-Agent':'Lynx/2.8.6rel.5 libwww-FM/2.14'})
@@ -26,7 +27,7 @@ class Google(SearchEngine):
     
     def _first_page(self):
         '''Returns the initial page and query.'''
-        url = u'{}/search?q={}'.format(self._base_url, quote_url(self._query, ''))
+        url = u'{}/search?q={}{}'.format(self._base_url, quote_url(self._query, ''), self._config)
         page = self._get_page(url)
         self._check_consent(page)
         return {'url':url, 'data':None}
